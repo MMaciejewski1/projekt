@@ -10,15 +10,15 @@ use App\Service\MailConverterService;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Sms;
 
-class MainPageController extends AbstractController
+class AdminController extends AbstractController
 {
-    #[Route(path: '/', name: 'mainpage', methods: ['GET'])]
+    #[Route(path: '/admin', name: 'admin', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
 
         $mails = $entityManager->getRepository(Sms::class)->findAll();
       
-        return $this->render('index.html.twig', [
+        return $this->render('table.html.twig', [
             'mails' => $mails,
         ]);
     }

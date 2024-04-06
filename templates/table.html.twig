@@ -16,7 +16,23 @@
     <body>
         {% block body %}
         
-        {% endblock %}
+        <table>
+            <tr>
+                <th>Nadawca</th>
+                <th>Odbiorca</th>
+                <th>Treść odebranej wiadomości</th>
+                <th>Data</th>
+            </tr>
+            {% for mail in mails  %}
+            <tr>
+                <td>{{mail.sender}}</td>
+                <td>{{mail.receiver}}</td>
+                <td>{{mail.message}}</td>
+                <td>{{mail.data |date('d-m-Y h:i:s')}}</td>
+            </tr>
+            {% endfor %}
+        </table>
         
+        {% endblock %}
     </body>
 </html>
