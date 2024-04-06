@@ -6,30 +6,36 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="assets/css/styles.css">
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="assets/js/script.js"></script>
         {% endblock %}
     </head>
     <body>
         {% block body %}
-        
-        <table>
+        <button onclick="getNewData(true)">Odswież smsy</button>
+        Wyszukaj po frazie<input type="text" id="input" onkeyup="filter()">
+        <table id = 'table'>
             <tr>
-                <th>Nadawca</th>
-                <th>Odbiorca</th>
-                <th>Treść odebranej wiadomości</th>
-                <th>Data</th>
+                <th onclick="sortTable(0)">Nadawca</th>
+                <th onclick="sortTable(1)">Odbiorca</th>
+                <th onclick="sortTable(2)">Treść odebranej wiadomości</th>
+                <th onclick="sortTable(3)">Data</th>
             </tr>
             {% for mail in mails  %}
-            <tr>
-                <td>{{mail.sender}}</td>
-                <td>{{mail.receiver}}</td>
-                <td>{{mail.message}}</td>
-                <td>{{mail.data |date('d-m-Y h:i:s')}}</td>
+            
+            <tr class = "{{mail.id}}">
+                <td style="display: none;"><input name="id" type="hidden" value="{{mail.id}}"></td>
+                <td><input name="sender" type="text" value="{{mail.sender}}"></td>
+                <td><input name="receiver" type="text" value="{{mail.receiver}}"></td>
+                <td><input name="message" type="text" value="{{mail.message}}"></td>
+                <td><input name="data" type="text" value="{{mail.data |date('d-m-Y h:i:s')}}"></td>
+                <td><input type="submit" value="Zapisz" onclick="submitRow({{mail.id}})"></td>
             </tr>
+           
             {% endfor %}
         </table>
         

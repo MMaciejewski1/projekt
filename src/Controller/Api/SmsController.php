@@ -10,12 +10,13 @@ use App\Service\MailConverterService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Sms;
-class GetDataController extends AbstractController
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+class SmsController extends AbstractController
 {
     #[Route(path: '/getData', name: 'getData', methods: ['GET'])]
     public function index(ConnectionInterface $exampleConnection,EntityManagerInterface $entityManager): JsonResponse
     {
-
         $mailbox = $exampleConnection->getMailbox();
         $mails = [];
         foreach($mailbox->searchMailbox('ALL') as $id){
@@ -37,5 +38,18 @@ class GetDataController extends AbstractController
         }
             $entityManager->flush();
         return  new JsonResponse($mails);
+    }
+    #[Route(path: '/setData', name: 'setData', methods: ['GET'])]
+    public function setData(Request $request,EntityManagerInterface $entityManager): RedirectResponse 
+    {
+        $id = $request->query->get('id', 1);
+        $sms = $entityManager->getRepository(Sms::class)->find($id);
+        $sms->setSender($request->query->get('sender', 1));
+        $sms->setReceiver($request->query->get('receiver', 1));
+        $sms->setMessage($request->query->get('message', 1));
+        $sms->setData(date_create($request->query->get('data', 1)));
+        $entityManager->persist($sms);
+        $entityManager->flush();
+        return  $this->redirectToRoute('admin');
     }
 }
