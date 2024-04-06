@@ -52,14 +52,18 @@
         sort = !sort;
         colPrev = col;
     }
-    function filter() {
+    function filter(column) {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("input");
     filter = input.value.toUpperCase();
     table = document.getElementById("table"); 
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td");
+        if(column >= 0){
+            td = tr[i].getElementsByTagName("td")[column];
+        }else{
+            td = tr[i].getElementsByTagName("td")
+        }
         if (td) {
             for (j = 0; j < td.length; j++) {
             

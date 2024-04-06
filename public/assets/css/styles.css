@@ -1,0 +1,35 @@
+body{
+    background-color: powderblue;
+}
+.container{
+    background-color:aquamarine;
+    padding: 10%;
+    margin: 10%;
+}
+.container a,input[type="submit" i]{
+    border: 2px solid rebeccapurple;
+    border-radius: 25px;
+    background-color: darkgreen;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+.container a:hover,input[type="submit" i]:hover{
+    background-color: violet;
+    cursor: pointer;
+}
+input[name="message" i]{
+    width: 300px;
+}
+.table{
+    border: 2px solid rebeccapurple;
+    border-radius: 25px;
+    background-color: aqua;
+    color: blue;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.container a:hover{
+    background-color: violet;
+}

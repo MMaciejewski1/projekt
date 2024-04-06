@@ -16,29 +16,30 @@
     </head>
     <body>
         {% block body %}
-        <button onclick="getNewData(true)">Odswież smsy</button>
-        Wyszukaj po frazie<input type="text" id="input" onkeyup="filter()">
-        <table id = 'table'>
-            <tr>
-                <th onclick="sortTable(0)">Nadawca</th>
-                <th onclick="sortTable(1)">Odbiorca</th>
-                <th onclick="sortTable(2)">Treść odebranej wiadomości</th>
-                <th onclick="sortTable(3)">Data</th>
-            </tr>
-            {% for mail in mails  %}
+        <div class="table">
+            <button onclick="getNewData(true)">Odswież smsy</button>
+            Wyszukaj po frazie<input type="text" id="input" onkeyup="filter(-1)">
+            <table id = 'table'>
+                <tr>
+                    <th onclick="sortTable(0)">Nadawca filtruj:<input style="width: 65px;" type="text" id="input" onkeyup="filter(0)"></th>
+                    <th onclick="sortTable(1)">Odbiorca filtruj:<input  style="width: 65px;" type="text" id="input" onkeyup="filter(1)"></th>
+                    <th onclick="sortTable(2)">Treść odebranej wiadomości filtruj:<input style="width: 65px;" type="text" id="input" onkeyup="filter(2)"></th>
+                    <th onclick="sortTable(3)">Data filtruj:<input style="width: 65px;" type="text" id="input" onkeyup="filter(3)"></th>
+                </tr>
+                {% for mail in mails  %}
+                
+                <tr class = "{{mail.id}}">
+                    <td style="display: none;"><input name="id" type="hidden" value="{{mail.id}}"></td>
+                    <td><input name="sender" type="text" value="{{mail.sender}}"></td>
+                    <td><input name="receiver" type="text" value="{{mail.receiver}}"></td>
+                    <td><input name="message" type="text" value="{{mail.message}}"></td>
+                    <td><input name="data" type="text" value="{{mail.data |date('d-m-Y h:i:s')}}"></td>
+                    <td><input type="submit" value="Zapisz" onclick="submitRow({{mail.id}})"></td>
+                </tr>
             
-            <tr class = "{{mail.id}}">
-                <td style="display: none;"><input name="id" type="hidden" value="{{mail.id}}"></td>
-                <td><input name="sender" type="text" value="{{mail.sender}}"></td>
-                <td><input name="receiver" type="text" value="{{mail.receiver}}"></td>
-                <td><input name="message" type="text" value="{{mail.message}}"></td>
-                <td><input name="data" type="text" value="{{mail.data |date('d-m-Y h:i:s')}}"></td>
-                <td><input type="submit" value="Zapisz" onclick="submitRow({{mail.id}})"></td>
-            </tr>
-           
-            {% endfor %}
-        </table>
-        
+                {% endfor %}
+            </table>
+        </div>
         {% endblock %}
     </body>
 </html>
