@@ -17,6 +17,13 @@
     <body>
         {% block body %}
         <div class="table">
+        <form action="/addSms">
+            <td><input name="sender" type="text" ></td>
+            <td><input name="receiver" type="text" ></td>
+            <td><input name="message" type="text" ></td>
+            <td><input name="data" type="text" ></td>
+            <td><input type="submit" value="Zapisz" ></td>
+        </form>
             <button onclick="getNewData(true)">Odswież smsy</button>
             Wyszukaj po frazie<input type="text" id="input" onkeyup="filter(-1)">
             <table id = 'table'>
@@ -35,6 +42,7 @@
                     <td><input name="message" type="text" value="{{mail.message}}"></td>
                     <td><input name="data" type="text" value="{{mail.data |date('d-m-Y h:i:s')}}"></td>
                     <td><input type="submit" value="Zapisz" onclick="submitRow({{mail.id}})"></td>
+                    <td><input type="submit" value="Usun" onclick="location.href='/deleteSms?id={{mail.id}}';"></td>
                 </tr>
             
                 {% endfor %}

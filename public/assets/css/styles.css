@@ -6,7 +6,7 @@ body{
     padding: 10%;
     margin: 10%;
 }
-.container a,input[type="submit" i]{
+.container a,input[type="submit" i],.btn{
     border: 2px solid rebeccapurple;
     border-radius: 25px;
     background-color: darkgreen;
@@ -14,7 +14,7 @@ body{
     color: white;
     padding: 10px;
 }
-.container a:hover,input[type="submit" i]:hover{
+.container a:hover,input[type="submit" i]:hover,.btn:hover{
     background-color: violet;
     cursor: pointer;
 }

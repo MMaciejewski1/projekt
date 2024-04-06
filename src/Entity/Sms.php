@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Sms
 {
     #[ORM\Id]
+    #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
@@ -25,6 +26,9 @@ class Sms
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $data = null;
 
+    #[ORM\Column]
+    private ?int $idMail = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,7 +40,17 @@ class Sms
 
         return $this;
     }
+    public function getIdMail(): ?int
+    {
+        return $this->idMail;
+    }
 
+    public function setIdMail(int $idMail): static
+    {
+        $this->idMail = $idMail;
+
+        return $this;
+    }
     public function getSender(): ?string
     {
         return $this->sender;
