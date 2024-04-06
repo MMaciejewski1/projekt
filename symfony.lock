@@ -110,6 +110,18 @@
     "psr/log": {
         "version": "1.1.2"
     },
+    "secit-pl/imap-bundle": {
+        "version": "3.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "2303e00839856f36b1829d0b189e5d959153aefb"
+        },
+        "files": [
+            "config/packages/imap.yaml"
+        ]
+    },
     "symfony/cache": {
         "version": "v5.0.1"
     },
@@ -197,6 +209,18 @@
     },
     "symfony/http-kernel": {
         "version": "v5.0.1"
+    },
+    "symfony/mailer": {
+        "version": "6.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.3",
+            "ref": "df66ee1f226c46f01e85c29c2f7acce0596ba35a"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
     },
     "symfony/maker-bundle": {
         "version": "1.0",

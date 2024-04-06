@@ -1,0 +1,6 @@
+imap:
+    connections:      
+        example:
+            imap_path: "{imap.iq.pl:993/imap/ssl/novalidate-cert}INBOX"
+            username: "sms-rekrutacja@ironteam-raporty.pl"
+            password: "sLdVcoRBu23ltiRIrwVt"
